@@ -1,0 +1,6 @@
+Title: Zero500 Information Security Policy
+
+Employees must not share passwords or credentials.
+All confidential company data must be encrypted.
+Use of external USB storage devices is strictly prohibited.
+Access to systems is logged and monitored.
