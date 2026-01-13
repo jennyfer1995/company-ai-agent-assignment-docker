@@ -46,6 +46,35 @@ It answers company internal policy questions by intelligently deciding whether t
 - REST API with Swagger UI
 - Docker containerization
 - Azure OpenAI compatible design
+  
+## Environment Variables
+Variable	Description
+OPENAI_API_KEY	OpenAI / Azure OpenAI API key
+AZURE_OPENAI_DEPLOYMENT_NAME	Azure OpenAI deployment name (optional)
+
+## Limitations
+
+-Keyword-based routing logic
+
+-Local FAISS index (no persistent storage)
+
+-No authentication or role-based access control (RBAC)
+
+-Minimal logging and monitoring
+
+## Future Improvements
+
+-Azure AI Search integration
+
+-Improved intent classification using ML models
+
+-Authentication and RBAC
+
+-Persistent vector storage
+
+-Azure Monitor & logging integration
+
+
 
 ---
 <img width="1552" height="868" alt="image" src="https://github.com/user-attachments/assets/b0c76f02-099c-4410-9687-e2ad924f8916" />
@@ -54,8 +83,6 @@ It answers company internal policy questions by intelligently deciding whether t
 
 
 ---
-
-
 
 ## 🛠 Tech Stack
 
@@ -66,87 +93,62 @@ It answers company internal policy questions by intelligently deciding whether t
 - **Containerization:** Docker
 - **Version Control:** Git + GitHub
 
----
-
-
-
----
-
-## ▶️ Run Locally (Without Docker)
-
-### 1️⃣ Install dependencies
-```bash
+##  ▶️ Run Locally (Without Docker)
+1️⃣ Install Dependencies
 pip install -r requirements.txt
-2️⃣ Set environment variable
-bash
-Copy code
-# Linux / macOS
+
+2️⃣ Set Environment Variable
+
+Linux / macOS
+
 export OPENAI_API_KEY=your_api_key
 
-# Windows PowerShell
+
+Windows (PowerShell)
+
 setx OPENAI_API_KEY "your_api_key"
+
 3️⃣ Start the API
-bash
-Copy code
 uvicorn app.api:app --reload
+
 4️⃣ Open Swagger UI
-bash
-Copy code
 http://localhost:8000/docs
-▶️ Run Locally (With Docker)
-1️⃣ Build Docker image
-bash
-Copy code
+
+
+------
+
+
+##  ▶️ Run Locally (With Docker)
+1️⃣ Build Docker Image
 docker build -t company-ai-agent .
-2️⃣ Run Docker container
-bash
-Copy code
+
+2️⃣ Run Docker Container
 docker run -p 8000:8000 \
   -e OPENAI_API_KEY=your_api_key \
   company-ai-agent
-3️⃣ Access API
-bash
-Copy code
-http://localhost:8000/docs
-🔗 API Specification
-POST /ask
-Request
 
-json
-Copy code
+3️⃣ Access API
+http://localhost:8000/docs
+
+
+
+-----
+
+## 🔗 API Specification
+Endpoint
+POST /ask
+
+Request Body
 {
   "query": "What is Zero500 HR policy?",
   "session_id": "user1"
 }
-Response
 
-json
-Copy code
+Response Body
 {
   "answer": "Zero500 employees are entitled to 24 days of paid leave per year...",
   "source": ["zero500_hr_policy.txt"]
 }
-🔑 Environment Variables
-Variable	Description
-OPENAI_API_KEY	OpenAI / Azure OpenAI API key
-AZURE_OPENAI_DEPLOYMENT_NAME	Azure OpenAI deployment name (optional)
 
-⚠️ Limitations
-Keyword-based routing logic
 
-Local FAISS index (no persistent storage)
 
-No authentication or role-based access
-
-Minimal logging
-
-🔮 Future Improvements
-Azure AI Search integration
-
-Better intent classification using ML
-
-Authentication & RBAC
-
-Persistent vector storage
-
-Azure Monitor integration
