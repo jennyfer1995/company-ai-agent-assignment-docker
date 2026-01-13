@@ -5,8 +5,6 @@ It answers company internal policy questions by intelligently deciding whether t
 - Answer directly using an LLM, or
 - Retrieve information from internal documents using **Retrieval-Augmented Generation (RAG)**.
 
----
-
 ## 🎯 Assessment Tasks Covered
 
 ### ✅ Task 1: AI Agent Development
@@ -52,11 +50,63 @@ It answers company internal policy questions by intelligently deciding whether t
 ---
 <img width="1552" height="868" alt="image" src="https://github.com/user-attachments/assets/b0c76f02-099c-4410-9687-e2ad924f8916" />
 
-Project Application URL:  http://localhost:8000/docs
-
 <img width="1868" height="812" alt="image" src="https://github.com/user-attachments/assets/0b3a3e9e-b5a4-437d-8f2e-82c231e1034c" />
 
 
+---
 
 ## 🧠 High-Level Architecture
+User Query
+↓
+Agent Router
+↓
+┌───────────────┐
+│ Policy Query? │── Yes ──→ Retrieve Documents → LLM + Context
+└───────────────┘
+│
+No
+↓
+Direct LLM Answer
+↓
+Structured Response + Sources
+
+
+## 🛠 Tech Stack
+
+- **Language:** Python 3.11
+- **Backend:** FastAPI
+- **Vector Store:** FAISS
+- **LLM:** OpenAI / Azure OpenAI
+- **Containerization:** Docker
+- **Version Control:** Git + GitHub
+
+---
+
+## 📂 Project Structure
+
+## ▶️ Run Locally (Without Docker)
+
+### 1️⃣ Install dependencies
+```bash
+pip install -r requirements.txt
+**#Set environment variable**
+export OPENAI_API_KEY=your_api_key
+**#Start the API**
+uvicorn app.api:app --reload
+**#Open Swagger UI**
+http://localhost:8000/docs
+
+## ▶️ Run with Docker
+1️⃣ Build image
+docker build -t company-ai-agent .
+
+2️⃣ Run container
+docker run -p 8000:8000 \
+  -e OPENAI_API_KEY=your_api_key \
+  company-ai-agent
+
+3️⃣ Access API
+http://localhost:8000/docs
+
+
 
