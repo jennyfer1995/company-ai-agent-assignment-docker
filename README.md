@@ -68,7 +68,9 @@ It answers company internal policy questions by intelligently deciding whether t
 
 ---
 
-## 📂 Project Structure
+
+
+---
 
 ## ▶️ Run Locally (Without Docker)
 
@@ -91,21 +93,60 @@ uvicorn app.api:app --reload
 bash
 Copy code
 http://localhost:8000/docs
-
-
-## 📂 Project Structure
-
-## ▶️ Run With Docker
-
+▶️ Run Locally (With Docker)
 1️⃣ Build Docker image
+bash
+Copy code
 docker build -t company-ai-agent .
-
 2️⃣ Run Docker container
+bash
+Copy code
 docker run -p 8000:8000 \
   -e OPENAI_API_KEY=your_api_key \
   company-ai-agent
-
 3️⃣ Access API
+bash
+Copy code
 http://localhost:8000/docs
+🔗 API Specification
+POST /ask
+Request
 
+json
+Copy code
+{
+  "query": "What is Zero500 HR policy?",
+  "session_id": "user1"
+}
+Response
 
+json
+Copy code
+{
+  "answer": "Zero500 employees are entitled to 24 days of paid leave per year...",
+  "source": ["zero500_hr_policy.txt"]
+}
+🔑 Environment Variables
+Variable	Description
+OPENAI_API_KEY	OpenAI / Azure OpenAI API key
+AZURE_OPENAI_DEPLOYMENT_NAME	Azure OpenAI deployment name (optional)
+
+⚠️ Limitations
+Keyword-based routing logic
+
+Local FAISS index (no persistent storage)
+
+No authentication or role-based access
+
+Minimal logging
+
+🔮 Future Improvements
+Azure AI Search integration
+
+Better intent classification using ML
+
+Authentication & RBAC
+
+Persistent vector storage
+
+Azure Monitor integration
