@@ -55,20 +55,6 @@ It answers company internal policy questions by intelligently deciding whether t
 
 ---
 
-## 🧠 High-Level Architecture
-User Query
-↓
-Agent Router
-↓
-┌───────────────┐
-│ Policy Query? │── Yes ──→ Retrieve Documents → LLM + Context
-└───────────────┘
-│
-No
-↓
-Direct LLM Answer
-↓
-Structured Response + Sources
 
 
 ## 🛠 Tech Stack
@@ -89,24 +75,37 @@ Structured Response + Sources
 ### 1️⃣ Install dependencies
 ```bash
 pip install -r requirements.txt
-**#Set environment variable**
+2️⃣ Set environment variable
+bash
+Copy code
+# Linux / macOS
 export OPENAI_API_KEY=your_api_key
-**#Start the API**
+
+# Windows PowerShell
+setx OPENAI_API_KEY "your_api_key"
+3️⃣ Start the API
+bash
+Copy code
 uvicorn app.api:app --reload
-**#Open Swagger UI**
+4️⃣ Open Swagger UI
+bash
+Copy code
 http://localhost:8000/docs
 
-## ▶️ Run with Docker
-1️⃣ Build image
+
+## 📂 Project Structure
+
+## ▶️ Run With Docker
+
+1️⃣ Build Docker image
 docker build -t company-ai-agent .
 
-2️⃣ Run container
+2️⃣ Run Docker container
 docker run -p 8000:8000 \
   -e OPENAI_API_KEY=your_api_key \
   company-ai-agent
 
 3️⃣ Access API
 http://localhost:8000/docs
-
 
 
