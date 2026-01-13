@@ -37,6 +37,9 @@ It answers company internal policy questions by intelligently deciding whether t
 - Complete README with setup, architecture, and design decisions
 
 ---
+## 🧠 High-Level Architecture
+<img width="837" height="421" alt="image" src="https://github.com/user-attachments/assets/0fa9bba2-8a04-4695-9a72-1f8114b39e61" />
+
 
 ## 🚀 Key Features
 
